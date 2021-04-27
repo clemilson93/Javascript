@@ -1,0 +1,30 @@
+estado 0 do jogo é o inicio do jogo onde tem a mensagem de apresentação
+Olá, nesse jogo você deve
+ser o primeiro a chegar  
+na linha final clicando  
+com mouse nos círculos   
+enumerados de 1 a 24, se 
+esse número tiver a sua  
+       Pressione enter...
+cor, o seu veículo vai   
+avançar, caso contrário, 
+o veículo que avançará   
+será o do concorrente que
+teve a cor que apareceu. 
+
+       Pressione enter...
+
+
+estado 1 do jogo é a espera da escolha do jogador
+Escolha um número agora!
+
+
+estado 2 do jogo é a pergunta ao jogador se ele tem certeza da sua escolha
+Você tem certeza de que  
+quer a opção 
+
+
+
+estado 3 de jogo é o fim do jogo que mostra quem venceu e dar a opção do jogador voltar ao inicio do jogo
+Fim da corrida! Vencedor 
+é o 
