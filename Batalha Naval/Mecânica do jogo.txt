@@ -1,0 +1,50 @@
+﻿------------::Batalha Naval::--------------------------
+
+Objetivo do jogo: destruir todos os barcos inimigos antes que a munição acabe.
+
+Número de jogadores: 2.
+
+Objetos do jogo:
+    * navioInimigo - tem uma quantidade de pontos extra, uma quantidade de munição extra.
+    * bauDeTesouro - uma quantidade de munição extra.
+    * vazio - não possui propiedades.
+    * jogador - tem um contador de pontos, um contador de munição, um nome e um check para saber se ainda pode no jogar.
+    * jogo - responsável por inicializar, atualizar parâmetros e controlar o fuxo do jogo.
+    * campoDeBatalha - responsável por gerenciar os espaços do campo de batalha.
+
+* Cada jogador recebe 5 munições no inicio do jogo.
+* O jogador que acertar um navio inimigo: +1 em munição e +10 em pontos.
+* O jogador que acertar um baú de tesourso: +30 em pontos.
+
+O campo de batalha é dividido em 16 espaços no formato de uma matriz 4x4. Linhas representadas por letras de A a D e colunas 
+representadas por números de 1 a 4.
+
+O jogo é composto por ondas de ataques inimigos onde cada uma tem 5 navios inimigos e 2 baús de tesourso que estarão 
+espalhados aleatoriamente nos espaços do campo de batalha. A onda termina quando todos os navios inimigos são destruidos e então 
+uma nova onda começa.
+
+Na execução do tiro:
+    1 - jogador -1 em munição.
+    2 - confere o que tinha nas coordenadas do tiro.
+    3 - verifica condições de fim de jogo para modificar a variavel "fimDeJogo" do atirador.
+
+No inicio de cada rodada de tiro deve ser checado:
+    1 - estado "fim de jogo" do jogador: sendo verdadeiro passa para o próximo jogador, sendo falso poderá atirar.
+
+Quando uma onda termina deve ser checado:
+    1 - qual dos jogadores acertou mais navios inimigos: jogador recebe +60 em pontos.
+    2 - munição dos jogadores: se 0 
+
+Fim de jogo se dá quando todos os jogadores estiverem sem munição.
+
+Fluxo do jogo:
+	Para iniciar o jogo o usuário deve escolher o modo de jogo desejado, modo de um ou dois jogadores. Ao iniciar o jogo, o jogador 
+da vez deve selecionar as coordenadas(linha e coluna) e confirmar o tiro, caso jogo tenha mais de um jogador, passa a vez de atirar 
+para o próximo jogador, depois do tiro do último jogador volta para o primeiro. Se o jogador não tiver mais munição para utilizar, 
+ele ficará fora do jogo.
+    Quando todos os navios inimigos forem destruidos a onda de ataque inimiga é finalizada e então é conferido quem destruiu mais 
+navios inimigos, aquele que destruiu mais ganha pontos extra. Em caso de empate ambos os jogadores ganham pontos extra. Os jogadores 
+que ainda estão em jogo voltam a ter a mesma quantidade de munição que receberam no inicio do jogo e então uma nova onda de ataque 
+inimigo inicia.
+    Quando todos os jogadores estiverem sem munição, o jogo encerra e logo depois é mostrado o nome, pontuação e quantidade de navios 
+inimigos destruidos de cada jogador.

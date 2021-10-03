@@ -1,0 +1,10 @@
+div{
+	border: 1px solid black;
+
+}
+
+#campo{
+	width: 480px;
+	height: 240px;
+
+}
