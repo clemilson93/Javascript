@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>--::Batalha naval::--</title>
+<script language="javascript" type="text/javascript" src="bn.js"></script>
+<link rel="stylesheet" href="bn.css"></link>
+</head>
+<body>
+<div id="titulo">
+	<h1>Batalha Naval</h1>
+</div>
+<div id="infoJogador">
+	Info do  jogador
+</div>
+<div id="campo">
+	<canvas id="telaDeJogo" width="400" height="200"></canvas>
+</div>
+<div id="log">
+	Log
+</div>
+<div id="comandos">
+	<table id="menuPrincipal">
+		<tr>
+			<td>
+				Numero de jogadores:
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" checked="true" name="numeroDeJogadores" value="1">1</input>
+			</td>
+			<td>
+				<input type="radio" name="numeroDeJogadores" value="2">2</input>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" value="Iniciar Jogo" onclick="batalhaNaval.iniciarJogo()"></input>
+			</td>
+		</tr>
+	</table>
+	Comandos do jogo
+</div>
+</body>
+</html>

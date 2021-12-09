@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="mesa">
+        <div style="background:black;height:50px;width:50px;position:absolute;top:125px;left:175px;"></div>
+        <div id="rd" style="background:red;height:100px;width:100px;position:absolute;top:100px;left:0px;"></div>
+        <div id="gn" style="background:green;height:100px;width:100px;position:absolute;top:100px;left:150px;"></div>
+        <div id="be" style="background:blue;height:100px;width:100px;position:absolute;top:100px;left:300px;"></div>
+    </div>
+    <div id="controle">
+        <p>Onde está o quadrado preto? Clique no botão com a cor correspondente do quadrado onde voce acha que o quadrado preto está.</p>
+
+        <button id="vo" value="0">Vermelho</button>
+        <button id="ve">Verde</button>
+        <button id="al">Azul</button>
+
+    </div>
+
+<script> 
+    var v1=1;
+    var v2=2;
+    var v3=3;
+    for(var i = 0;i < 10;i++){
+        v1=v1+1;
+        if(i%2 == 0){
+            v2=v2+1;
+
+        }
+        else{
+            v2=v2+v1;
+        }
+
+    }
+    v3=v1+v2+v3;
+    console.log(v1);
+    console.log(v2);
+    console.log(v3);
+    var posicoes = [[125,25], [125, 175], [125, 325]];
+    var quadrados = ["div#rd", "div#gn", "div#be"];
+    var aleatorio = Math.floor(Math.random() * 3);
+    var mesa = 
+    '<div style="background:black;height:50px;width:50px;position:absolute;top:'+posicoes[aleatorio][0]+'px;left:'+posicoes[aleatorio][1]+'px;"></div>'+
+    '<div id="rd" style="background:red;height:100px;width:100px;position:absolute;top:100px;left:0px;"></div>'+
+    '<div id="gn" style="background:green;height:100px;width:100px;position:absolute;top:100px;left:150px;"></div>'+
+    '<div id="be" style="background:blue;height:100px;width:100px;position:absolute;top:100px;left:300px;"></div>';
+    document.getElementById("mesa").innerHTML = mesa;
+    $(document).ready(function(){
+      $("button#vo").click(function(){$("div#rd").animate({top: '200px'});if(aleatorio==0){document.getElementById("controle").innerHTML = "Acertou!";}else{document.getElementById("controle").innerHTML = "Errou!";$(quadrados[aleatorio]).animate({top: '200px'});}}),
+      $("button#ve").click(function(){$("div#gn").animate({top: '200px'});if(aleatorio==1){document.getElementById("controle").innerHTML = "Acertou!";}else{document.getElementById("controle").innerHTML = "Errou!";$(quadrados[aleatorio]).animate({top: '200px'});}}),
+      $("button#al").click(function(){$("div#be").animate({top: '200px'});if(aleatorio==2){document.getElementById("controle").innerHTML = "Acertou!";}else{document.getElementById("controle").innerHTML = "Errou!";$(quadrados[aleatorio]).animate({top: '200px'});}});}
+      );
+    </script> 
+</body>
+</html>

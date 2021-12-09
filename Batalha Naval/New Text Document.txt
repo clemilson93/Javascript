@@ -1,0 +1,115 @@
+function criarJogador(_nomeDoJogador){
+    var jogador = {
+        nome : _nomeDoJogador,
+        pontuacao : 0,
+        municao : 5,
+        fimDejogo : false,
+        atirar(_coordenadas){
+            console.log(this.nome + " atirar");
+            this.municao = this.municao - 1;
+            campoDeBatalha.espacos[_coordenadas[0]][_coordenadas[1]].acerto(this);
+            if(this.municao == 0){
+                this.fimDejogo = true;
+            }
+
+        }
+    };
+
+    return jogador;
+}
+
+const navioInimigo = {
+    municaoExtra : 1,
+    pontosExtra : 10,
+    acerto(_atirador){
+        console.log(_atirador.nome + " navioInimigo.acerto");
+        _atirador.municao += this.municaoExtra;
+        _atirador.pontuacao += this.pontosExtra;
+    }
+
+};
+
+const bauDeTesouro = {
+    pontosExtra : 30,
+    acerto(_atirador){
+        console.log(_atirador.nome + " bauDeTesouro.acerto");
+        _atirador.pontuacao += this.pontosExtra;
+    }
+
+};
+
+const vazio = {
+    acerto(_atirador){
+        console.log(_atirador.nome + " vazio.acerto");
+    }
+
+};
+
+const campoDeBatalha = {
+    espacos : [],
+    tamanho : [4, 4],
+    inicializar(){
+        console.log("Campo de batalha inicializar");
+        for(var i = 0; i < this.tamanho[0]/*Linhas*/; i++){//cria os espaços do campo de batalha
+            var spco = [];
+            for(var j = 0; j < this.tamanho[1]/*Colunas*/; j++){
+                spco[j] = vazio;
+            }
+            this.espacos[i] = spco;
+
+        }
+    },
+    reiniciar(){
+        for(var i = 0; i < this.tamanho[0]/*Linhas*/; i++){//reinicia o campo de batalha com objetos vazios.
+            for(var j = 0; j < this.tamanho[1]/*Colunas*/; j++){
+                this.espacos[i][j] = vazio;
+            }
+        }
+    }
+};
+
+const jogo = {
+    jogadores : [],
+    jogadorAtual : "",
+    inicializarJogo(_numeroDeJogadores){
+        console.log("Jogo inicializar jogo");
+        campoDeBatalha.inicializar();
+        for(var i = 0; i < _numeroDeJogadores; i++){//cria os jogadores necessarios para o jogo
+            this.jogadores.push(criarJogador("Jogador " + (i+1)));
+        }
+        this.inicializarOnda();
+        this.jogadorAtual = this.jogadores[0];
+    },
+    atualizarJogo(){
+        console.log("Nome\t\tPontuacao\t\tMunicao\t\tFim de jogo");
+        this.jogadores.forEach(mostrarJogadores);
+        function mostrarJogadores(_jogadores){
+            console.log(_jogadores.nome + "\t" + _jogadores.pontuacao + "\t\t\t\t" + _jogadores.municao + "\t\t\t" + _jogadores.fimDejogo + "\n");
+        }
+    },
+    inicializarOnda(){
+        console.log("Jogo inicializar onda");
+        var naviosInimigos = 5, bausDeTesouro = 2;
+        for(var i = 0; naviosInimigos > 0 || bausDeTesouro > 0; i++){
+            if(i >= 4){
+                i = 0;
+            }
+            for(var j = 0, j = 0; j < 4; j++){
+                var aleatorio = Math.floor(Math.random() * 10);
+                if(aleatorio >= 0 && aleatorio <= 3 && naviosInimigos > 0 && campoDeBatalha.espacos[i][j] === vazio){
+                    campoDeBatalha.espacos[i][j] = navioInimigo;
+                    naviosInimigos -= 1;
+                }
+                else if(aleatorio >= 4 && aleatorio <= 5 && bausDeTesouro > 0 && campoDeBatalha.espacos[i][j] === vazio){
+                    campoDeBatalha.espacos[i][j] = bauDeTesouro;
+                    bausDeTesouro -= 1;
+                }
+            }
+        }
+    },
+    executarTiro(_coordenadas){
+        this.jogadorAtual.municao -= 1;
+        
+
+    }
+};
